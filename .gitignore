@@ -11,7 +11,6 @@ node_modules
 package-lock.json
 # dist
 dist-ssr
-tmp
 *.local
 
 # Editor directories and files
