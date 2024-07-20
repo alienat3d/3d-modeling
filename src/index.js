@@ -1,5 +1,7 @@
 import { timerFunc } from "./modules/timer";
-import { tmpFunc } from "./modules/tmp";
+import { menuFunc } from "./modules/menu";
+import { modalFunc } from "./modules/modal";
 
-timerFunc('04 july 2024 12:35');
-tmpFunc();
+timerFunc('07 august 2024 14:00');
+menuFunc();
+modalFunc();
