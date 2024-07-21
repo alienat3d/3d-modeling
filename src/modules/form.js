@@ -1,8 +1,13 @@
+/* [✓] 2) У нас на странице есть 3 формы (первый экран, последний экран и модальное окно). Необходимо валидировать (проверять введенное значение на допустимые символы) поля ввода всех форм:
+
+В поля ввода type=text и placeholder="Ваше сообщение" позволить ввод только кириллицы в любом регистре, дефиса и пробела.
+В поля ввода type=email позволить ввод только латиницы в любом регистре, цифры и спецсимволы:  @  -  _  . ! ~ * '
+(Собака , Дефис , Подчеркивание , Точка , Восклицательный знак , Тильда , Звездочка , Одинарная кавычка)   
+В поля ввода type=tel позволить ввод только цифр, круглых скобок и дефис */
 export const formFunc = () => {
 	const textInputs = document.querySelectorAll('input[id$="-name"]');
 	const emailInputs = document.querySelectorAll('input[type="email"]');
 	const phoneInputs = document.querySelectorAll('input[type="tel"]');
-	console.log('phoneInputs', phoneInputs)
 
 	const cyrillicLettersOnly = /[^а-яА-Я]+/g;
 	const emailSymbolsOnly = /[^\w\@\-\_\.\!\~\*\']+/g;
