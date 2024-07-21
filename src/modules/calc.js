@@ -11,13 +11,17 @@
 */
 export const calcFunc = () => {
 	const calcBlock = document.querySelector('.calc-block');
-	const calcInputs = calcBlock.querySelectorAll('.calc-item');
+	const calcInputs = calcBlock.querySelectorAll('input');
+	// const calcSelect = calcBlock.querySelector('.calc-type');
+	// const calcOptions = calcSelect.querySelectorAll('option');
+
+	// console.log(calcOptions);
 
 	const regExpDigitsOnly = /\D+/g;
 
-	calcInputs.forEach(input => 
-		input.addEventListener('input', () => 
+	calcInputs.forEach(input => {
+		input.addEventListener('input', () =>
 			input.value = input.value.replace(regExpDigitsOnly, '')
 		)
-	);
+	});
 }
