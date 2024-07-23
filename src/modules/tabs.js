@@ -3,7 +3,6 @@ export const tabsFunc = () => {
 	const tabsContent = document.querySelectorAll('.service-tab');
 	const tabsPanel = document.querySelector('.service-header');
 	const tabs = tabsPanel.querySelectorAll('.service-header-tab');
-	console.log('tabs', tabs)
 
 	tabsPanel.addEventListener('click', (evt) => {
 		// if (tgt.classList.contains('service-header-tab')) { - не подходит, т.к. у нас внутри ещё тег <span>, поэтому используем метод closest() с классом вкладки
