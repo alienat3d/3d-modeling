@@ -3,13 +3,15 @@ export const menuFunc = () => {
 	const menu = document.querySelector('menu');
 	const scrollDownBtn = document.querySelector('a[href="#service-block"]');
 
-	const handleMenu = () => {
-		menu.classList.toggle('active-menu');
+	const toggleMenu = () => {
+		menu.classList.contains('active-menu') ?
+			menu.classList.remove('active-menu') :
+			menu.classList.add('active-menu');
 	}
 
 	main.addEventListener('click', evt => {
-		if (evt.target.closest('.menu')) {
-			handleMenu();
+		if (evt.target.closest('.menu') || menu.classList.contains('active-menu')) {
+			toggleMenu();
 		} else if (evt.target.closest('a[href="#service-block"]')) {
 			evt.preventDefault();
 			const blockId = scrollDownBtn.getAttribute('href');
@@ -23,9 +25,9 @@ export const menuFunc = () => {
 			const menuLink = evt.target;
 			const blockId = menuLink.getAttribute('href');
 			document.querySelector(blockId).scrollIntoView({ behavior: "smooth" });
-			handleMenu();
-		} else if (evt.target.closest('.close-btn')) {
-			handleMenu();
+			toggleMenu();
+		} else if (evt.target.closest('.close-btn') || evt.target.closest('main')) {
+			toggleMenu();
 		}
 	})
 }
