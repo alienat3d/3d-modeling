@@ -19,9 +19,9 @@ export const swiperSettingsFunc = () => {
 			enabled: true,
 			onlyInViewport: true,
 		},
-		// autoplay: {
-		// 	delay: 2000,
-		// },
+		autoplay: {
+			delay: 2500,
+		},
 		breakpoints: {
 			640: {
 				slidesPerView: 2,

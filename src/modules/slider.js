@@ -3,10 +3,20 @@ export const sliderFunc = () => {
 
 	const sliderBlock = document.querySelector('.portfolio-content');
 	const slides = sliderBlock.querySelectorAll('.portfolio-item');
-	const dots = sliderBlock.querySelectorAll('.dot');
-
+	const dotsBlock = document.querySelector('.portfolio-dots');
+	
 	let currentSlide = 0;
 	let interval;
+	let dots;
+
+	const renderDots = () => {
+		for (let index = 0; index < slides.length; index++) {
+			const elem = document.createElement('li');
+			if (index === 0) elem.classList.add('dot', 'dot-active');
+			elem.classList.add('dot');
+			dotsBlock.append(elem);
+		}
+	}
 	
 	const prevSlide = (elems, idx, activeClass) => elems[idx].classList.remove(activeClass);
 	const nextSlide = (elems, idx, activeClass) => elems[idx].classList.add(activeClass);
@@ -61,5 +71,7 @@ export const sliderFunc = () => {
 		if (evt.target.matches('.dot, .portfolio-btn')) startSlider(TIME_INTERVAL);
 	}, true)
 
+	renderDots();
+	dots = dotsBlock.querySelectorAll('.dot');
 	startSlider(TIME_INTERVAL);
 }
