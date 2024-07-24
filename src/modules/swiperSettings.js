@@ -8,8 +8,8 @@ export const swiperSettingsFunc = () => {
 		slidesPerView: 1,
 		spaceBetween: 10,
 		navigation: {
-			prevEl: '.swiper-button-prev',
-			nextEl: '.swiper-button-next',
+			prevEl: '.companies-btn-left',
+			nextEl: '.companies-btn-right',
 		},
 		pagination: {
 			el: ".swiper-pagination",
@@ -19,9 +19,9 @@ export const swiperSettingsFunc = () => {
 			enabled: true,
 			onlyInViewport: true,
 		},
-		autoplay: {
-			delay: 2000,
-		},
+		// autoplay: {
+		// 	delay: 2000,
+		// },
 		breakpoints: {
 			640: {
 				slidesPerView: 2,

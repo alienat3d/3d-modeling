@@ -1,0 +1,18 @@
+.companies-btn {
+	cursor: pointer;
+	z-index: 15;
+	width: 30px;
+	height: 30px;
+	top: var(--swiper-navigation-top-offset, 94%);
+	background: url('../images/icons/arrow-left-slider.svg') no-repeat center/contain !important;
+}
+.companies-btn-left {
+	left: var(--swiper-navigation-sides-offset, 250px)
+}
+.companies-btn-right {
+	right: var(--swiper-navigation-sides-offset, 250px);
+	transform: rotate(180deg);
+}
+.companies-wrapper .swiper-pagination-bullet-active {
+	background-color: #19b5fe;
+}
