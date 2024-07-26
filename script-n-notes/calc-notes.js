@@ -57,3 +57,33 @@ export const calcFunc = (price = 10000) => {
 		)
 	});
 }
+
+	/* 	const countingNumbersDown = (elem, val, speed = 200) => {
+			const animationSpeed = speed;
+	
+			const animate = () => {
+				const value = +val;
+				const data = +elem.innerText;
+	
+				if (+data === +value) {
+					elem.innerText = value.toString().replace(numberWithSpaces, " ");
+				}
+	
+				const countDown = Math.round(data / animationSpeed);
+	
+				if (data > value) {
+					elem.innerText = Math.round(data - countDown);
+					setTimeout(animate, 1);
+				} else {
+					elem.innerText = value;
+				}
+				if (+data === +value) {
+					elem.innerText = value.toString().replace(numberWithSpaces, " ");
+				}
+			}
+			animate();
+		} */
+
+				// const numberWithSpaces = /\B(?=(\d{3})+(?!\d))/g;
+	// .toString().replace(numberWithSpaces, " ");
+	// let timeout; - проверить идею про сброс id-timeout
