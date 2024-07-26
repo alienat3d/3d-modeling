@@ -10,7 +10,7 @@ import { swiperSettingsFunc } from "./modules/swiperSettings"
 timerFunc('07 august 2024 14:00');
 menuFunc();
 modalFunc();
-calcFunc();
+calcFunc(10000);
 formFunc();
 tabsFunc();
 sliderFunc('.portfolio-content', '.portfolio-item');
