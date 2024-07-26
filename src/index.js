@@ -5,7 +5,7 @@ import { calcFunc } from "./modules/calc";
 import { formFunc } from "./modules/form";
 import { tabsFunc } from "./modules/tabs";
 import { sliderFunc } from "./modules/slider";
-import { swiperSettingsFunc } from "./modules/swiperSettings"
+import { swiperSettingsFunc } from "./modules/swiperSettings";
 
 timerFunc('07 august 2024 14:00');
 menuFunc();
