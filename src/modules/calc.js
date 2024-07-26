@@ -8,7 +8,57 @@ export const calcFunc = (price = 10000) => {
 	const total = calcBlock.querySelector('#total');
 
 	const digitsOnly = /\D+/g;
-	const numberWithSpaces = /\B(?=(\d{3})+(?!\d))/g;
+	// const numberWithSpaces = /\B(?=(\d{3})+(?!\d))/g;
+
+	// let timeout;
+
+	const countingNumbersUp = (elem, val, speed = 200) => {
+		const animationSpeed = speed;
+
+		const animate = () => {
+			const value = +val;
+			const data = +elem.innerText;
+			// const data = +elem.innerText.replace(/\s/, "");
+			console.log(data);
+
+			const countUp = value / animationSpeed;
+
+			if (data < value) {
+				elem.innerText = Math.ceil(+elem.innerText + countUp);
+				timeout = setTimeout(animate, 1);
+			} else {
+				elem.innerText = value;
+				// elem.innerText = value.toString().replace(numberWithSpaces, " ");
+			}
+		}
+
+		animate();
+	}
+	/* 	const countingNumbersDown = (elem, val, speed = 200) => {
+			const animationSpeed = speed;
+	
+			const animate = () => {
+				const value = +val;
+				const data = +elem.innerText;
+	
+				if (+data === +value) {
+					elem.innerText = value.toString().replace(numberWithSpaces, " ");
+				}
+	
+				const countDown = Math.round(data / animationSpeed);
+	
+				if (data > value) {
+					elem.innerText = Math.round(data - countDown);
+					setTimeout(animate, 1);
+				} else {
+					elem.innerText = value;
+				}
+				if (+data === +value) {
+					elem.innerText = value.toString().replace(numberWithSpaces, " ");
+				}
+			}
+			animate();
+		} */
 
 	const countCalc = () => {
 		const calcTypeValue = +calcType.options[calcType.selectedIndex].value;
@@ -19,7 +69,7 @@ export const calcFunc = (price = 10000) => {
 		let calcDaysValue = 1;
 
 		if (+calcCount.value > 1) calcCountValue += +calcCount.value / 10;
-		
+
 		if (calcDays.value && +calcDays.value < 5) {
 			calcDaysValue = 2;
 		} else if (calcDays.value && +calcDays.value < 10) {
@@ -30,14 +80,14 @@ export const calcFunc = (price = 10000) => {
 			totalValue = price * calcTypeValue * calcSquareValue * calcCountValue * calcDaysValue :
 			totalValue = 0;
 
-		totalValue = totalValue.toString().replace(numberWithSpaces, " ");
+		total.dataset.num = totalValue;
 
-		total.textContent = totalValue + ' ₽';
+		countingNumbersUp(total, totalValue, 300);
 	}
 
 	calcBlock.addEventListener('input', (evt) => {
-		if (evt.target === calcType || evt.target === calcSquare || 
-				evt.target === calcCount || evt.target === calcDays) {
+		if (evt.target === calcType || evt.target === calcSquare ||
+			evt.target === calcCount || evt.target === calcDays) {
 			countCalc();
 		}
 	})
