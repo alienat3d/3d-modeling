@@ -1,9 +1,12 @@
-export const sliderFunc = () => {
+export const sliderFunc = (containerClass, slideClass) => {
+	if (!containerClass || !slideClass) return;
+
 	let TIME_INTERVAL = 4;
 
-	const sliderBlock = document.querySelector('.portfolio-content');
-	const slides = sliderBlock.querySelectorAll('.portfolio-item');
-	const dotsBlock = document.querySelector('.portfolio-dots');
+	const sliderBlock = document.querySelector(containerClass);
+	if (sliderBlock === null) return;
+	const slides = sliderBlock.querySelectorAll(slideClass);
+	const dotsBlock = sliderBlock.querySelector('.slider-dots');
 	
 	let currentSlide = 0;
 	let interval;
@@ -22,11 +25,11 @@ export const sliderFunc = () => {
 	const nextSlide = (elems, idx, activeClass) => elems[idx].classList.add(activeClass);
 
 	const autoSlider = () => {
-		prevSlide(slides, currentSlide, 'portfolio-item-active');
+		prevSlide(slides, currentSlide, 'slide-active');
 		prevSlide(dots, currentSlide, 'dot-active');
 		currentSlide++;
 		if (currentSlide >= slides.length) currentSlide = 0;
-		nextSlide(slides, currentSlide, 'portfolio-item-active');
+		nextSlide(slides, currentSlide, 'slide-active');
 		nextSlide(dots, currentSlide, 'dot-active');
 	}
 
@@ -44,7 +47,7 @@ export const sliderFunc = () => {
 
 		if (!evt.target.matches('.dot, .portfolio-btn')) return;
 		
-		prevSlide(slides, currentSlide, 'portfolio-item-active');
+		prevSlide(slides, currentSlide, 'slide-active');
 		prevSlide(dots, currentSlide, 'dot-active');
 		
 		if (evt.target.matches('#arrow-left')) {
@@ -60,7 +63,7 @@ export const sliderFunc = () => {
 		if (currentSlide >= slides.length) currentSlide = 0;
 		if (currentSlide < 0) currentSlide = slides.length - 1;
 
-		nextSlide(slides, currentSlide, 'portfolio-item-active');
+		nextSlide(slides, currentSlide, 'slide-active');
 		nextSlide(dots, currentSlide, 'dot-active');
 	})
 

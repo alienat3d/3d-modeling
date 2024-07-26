@@ -13,5 +13,5 @@ modalFunc();
 calcFunc();
 formFunc();
 tabsFunc();
-sliderFunc();
+sliderFunc('.portfolio-content', '.portfolio-item');
 swiperSettingsFunc();
