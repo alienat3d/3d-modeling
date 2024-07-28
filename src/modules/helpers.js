@@ -10,6 +10,10 @@ const animate = ({ timing, draw, duration }) => {
 
 	let start = performance.now();
 
+	function quad(timeFraction) {
+		return Math.pow(timeFraction, 2)
+	}
+
 	requestAnimationFrame(function animate(time) {
 		// timeFraction изменяется от 0 до 1
 		let timeFraction = (time - start) / duration;
@@ -23,7 +27,6 @@ const animate = ({ timing, draw, duration }) => {
 		if (timeFraction < 1) {
 			requestAnimationFrame(animate);
 		}
-
 	});
 }
 

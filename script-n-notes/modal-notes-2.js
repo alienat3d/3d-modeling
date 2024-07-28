@@ -5,11 +5,22 @@ export const modalFunc = () => {
 	const modal = document.querySelector('.popup');
 	const buttons = document.querySelectorAll('.popup-btn');
 
+	// let count = 0;
+	// let idInterval;
+
 	const modalAppearAnimation = () => {
+		// idInterval = requestAnimationFrame(modalAppearAnimation);
+		// if (count < 10) {
+		// 	modal.style.opacity = `0.${count++}`;
+		// } else {
+		// 	count = 10;
+		// 	modal.style.opacity = 1;
+		// 	cancelAnimationFrame(idInterval);
 		modal.style.display = 'block';
 		animate({
 			duration: 400,
 			timing(timeFraction) {
+				// return timeFraction;
 				return Math.pow(timeFraction, 2);
 			},
 			draw(progress) {
@@ -18,6 +29,14 @@ export const modalFunc = () => {
 		})
 	}
 	const modalDisappearAnimation = () => {
+		/* idInterval = requestAnimationFrame(modalDisappearAnimation);
+		if (count > 0) {
+			modal.style.opacity = `0.${count--}`;
+		} else {
+			modal.style.opacity = 0;
+			modal.style.display = 'none';
+			cancelAnimationFrame(idInterval);
+		} */
 		animate({
 			duration: 400,
 			timing(timeFraction) {
