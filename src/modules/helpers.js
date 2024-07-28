@@ -10,9 +10,9 @@ const animate = ({ timing, draw, duration }) => {
 
 	let start = performance.now();
 
-	function quad(timeFraction) {
-		return Math.pow(timeFraction, 2)
-	}
+	// function quad(timeFraction) {
+	// 	return Math.pow(timeFraction, 2)
+	// }
 
 	requestAnimationFrame(function animate(time) {
 		// timeFraction изменяется от 0 до 1
@@ -30,6 +30,12 @@ const animate = ({ timing, draw, duration }) => {
 	});
 }
 
-export { slicer, animate };
+// Divides numbers into digits of 3 digits each
+const splitNumbers = (str) => {
+	const regExp = /\B(?=(\d{3})+(?!\d))/g;
+	return str.replace(regExp, " ");
+}
+
+export { slicer, animate, splitNumbers };
 
 // https://learn.javascript.ru/js-animation

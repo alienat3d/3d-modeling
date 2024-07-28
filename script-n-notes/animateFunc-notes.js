@@ -1,3 +1,5 @@
+// todo [just a scratch example, for more look at (glo-gs-course/25-requestAnimationFrame-examples/)]
+
 import { slicer, animate } from '../src/modules/helpers';
 
 export const testFunc = () => {

@@ -1,3 +1,5 @@
+import { animate, splitNumbers } from './helpers';
+
 export const calcFunc = (price = 10000) => {
 	const calcBlock = document.querySelector('.calc-block');
 	const calcType = calcBlock.querySelector('select');
@@ -9,7 +11,7 @@ export const calcFunc = (price = 10000) => {
 
 	const digitsOnly = /\D+/g;
 
-	const countingNumbersUp = (elem, val, speed = 200) => {
+	/* const countingNumbersUp = (elem, val, speed = 200) => {
 		const animationSpeed = speed;
 
 		const animate = () => {
@@ -27,6 +29,27 @@ export const calcFunc = (price = 10000) => {
 		}
 
 		animate();
+	} */
+	const countingNumbersUp = (elem, val, speed = 500) => {
+		function makeEaseInOut(timing) {
+			return function (timeFraction) {
+				if (timeFraction < .5)
+					return timing(2 * timeFraction) / 2;
+				else
+					return (2 - timing(2 * (1 - timeFraction))) / 2;
+			}
+		}
+		function quad(timeFraction) {
+			return Math.pow(timeFraction, 2)
+		}
+		const quadEaseOut = makeEaseInOut(quad);
+		animate({
+			duration: speed,
+			timing: quadEaseOut,
+			draw(progress) {
+				elem.innerText = splitNumbers(Math.round(progress * val).toString()) + ' ₽';
+			}
+		})
 	}
 
 	const countCalc = () => {
@@ -51,7 +74,7 @@ export const calcFunc = (price = 10000) => {
 
 		total.dataset.num = totalValue;
 
-		countingNumbersUp(total, totalValue, 300);
+		countingNumbersUp(total, totalValue, 500);
 	}
 
 	calcBlock.addEventListener('input', (evt) => {
