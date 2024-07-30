@@ -1,4 +1,4 @@
-import { animate, splitNumbers } from './helpers';
+import { animate, splitNumbers, digitsOnly } from './helpers';
 
 export const calcFunc = (price = 10000) => {
 	const calcBlock = document.querySelector('.calc-block');
@@ -8,8 +8,6 @@ export const calcFunc = (price = 10000) => {
 	const calcCount = calcInputs[1];
 	const calcDays = calcInputs[2];
 	const total = calcBlock.querySelector('#total');
-
-	const digitsOnly = /\D+/g;
 
 	const countingNumbersUp = (elem, val, speed = 500) => {
 		function makeEaseInOut(timing) {
@@ -65,9 +63,9 @@ export const calcFunc = (price = 10000) => {
 		}
 	})
 
-	calcInputs.forEach(input => {
+	calcInputs.forEach(input => 
 		input.addEventListener('input', () =>
-			input.value = input.value.replace(digitsOnly, '')
+			input.value = digitsOnly(input.value)
 		)
-	});
+	);
 }

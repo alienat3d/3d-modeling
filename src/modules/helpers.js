@@ -36,6 +36,12 @@ const splitNumbers = (str) => {
 	return str.replace(regExp, " ");
 }
 
-export { slicer, animate, splitNumbers };
+// Leaves digits only in a string
+const digitsOnly = (str) => {
+	const regExp = /\D+/g;
+	return str.replace(regExp, '');
+}
+
+export { slicer, animate, splitNumbers, digitsOnly };
 
 // https://learn.javascript.ru/js-animation
