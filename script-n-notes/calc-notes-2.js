@@ -11,6 +11,25 @@ export const calcFunc = (price = 10000) => {
 
 	const digitsOnly = /\D+/g;
 
+	/* const countingNumbersUp = (elem, val, speed = 200) => {
+		const animationSpeed = speed;
+
+		const animate = () => {
+			const value = +val;
+			let data = +elem.innerText;
+
+			const countUp = value / animationSpeed;
+
+			if (data < value) {
+				elem.innerText = Math.ceil(+elem.innerText + countUp); 
+				setTimeout(animate, 1);
+			} else {
+				elem.innerText = value;
+			}
+		}
+
+		animate();
+	} */
 	const countingNumbersUp = (elem, val, speed = 500) => {
 		function makeEaseInOut(timing) {
 			return function (timeFraction) {
