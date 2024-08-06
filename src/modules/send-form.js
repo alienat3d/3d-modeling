@@ -4,9 +4,42 @@ export const sendFormFunc = ({ formId, someElems = [] }) => {
 	const form = document.querySelector(formId);
 
 	const statusInfoBlock = document.createElement('div');
-	const loadText = 'Началась загрузка данных…';
-	const errorText = 'Произошла ошибка! Попробуйте снова.';
+	statusInfoBlock.classList.add('status-info-block');
+	const errorText = 'Данные не валидны, проверьте ввод и попробуйте снова!';
 	const successText = 'Спасибо за заявку! Наш менеджер скоро с вами свяжется!';
+
+	const loadingAnimation = document.createElement('div');
+	loadingAnimation.classList.add('sk-chase-wrapper');
+	loadingAnimation.insertAdjacentHTML('afterbegin', `
+		<div class="sk-chase">
+			<div class="sk-chase-dot"></div>
+			<div class="sk-chase-dot"></div>
+			<div class="sk-chase-dot"></div>
+			<div class="sk-chase-dot"></div>
+			<div class="sk-chase-dot"></div>
+			<div class="sk-chase-dot"></div>
+		</div>`);
+
+	let timeout;
+
+	const appendInfoMessage = (message) => {
+		clearTimeout(timeout);
+		if (statusInfoBlock.classList.contains('error-message')) {
+			statusInfoBlock.classList.remove('error-message');
+		}
+		statusInfoBlock.remove();
+
+		document.querySelector('.sk-chase-wrapper').remove(); // remove preloader animation
+		form.insertAdjacentElement('beforeend', statusInfoBlock);
+		statusInfoBlock.textContent = message;
+		
+		timeout = setTimeout(() => {
+			if (statusInfoBlock.classList.contains('error-message')) {
+				statusInfoBlock.classList.remove('error-message');
+			}
+			statusInfoBlock.remove();
+		}, 7000)
+	}
 
 	const checkInput = (input, regExp) =>
 		regExp.test(input.value) ?
@@ -15,7 +48,7 @@ export const sendFormFunc = ({ formId, someElems = [] }) => {
 
 	const validate = (list) => {
 		let success = true;
-		
+
 		list.forEach(input => {
 			input.classList.remove('success');
 			input.classList.remove('error');
@@ -48,8 +81,7 @@ export const sendFormFunc = ({ formId, someElems = [] }) => {
 			headers: {
 				'Content-Type': 'application/json'
 			}
-		})
-			.then(res => res.json());
+		}).then(res => res.json());
 	}
 
 	const submitForm = () => {
@@ -68,25 +100,22 @@ export const sendFormFunc = ({ formId, someElems = [] }) => {
 			}
 		});
 
-		statusInfoBlock.textContent = loadText;
-		form.append(statusInfoBlock);
+		form.insertAdjacentElement('beforeend', loadingAnimation);
 
 		if (validate(formInputs)) {
 			sendData(formBody)
 				.then(() => {
-					statusInfoBlock.textContent = successText;
+					appendInfoMessage(successText);
 					formInputs.forEach(input => input.value = '');
 				})
-				.catch(() => {
-					statusInfoBlock.textContent = errorText;
+				.catch(error => {
+					console.warn(error.message);
 				});
 		} else {
-			// alert('Данные не валидны, проверьте ввод и попробуйте снова!');
-			console.warn('Данные не валидны, проверьте ввод и попробуйте снова!');
+			appendInfoMessage(errorText);
+			statusInfoBlock.classList.add('error-message');
 		}
 	}
-
-	statusInfoBlock.classList.add('info-block');
 
 	try {
 		if (!form) {
