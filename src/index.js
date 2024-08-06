@@ -26,5 +26,21 @@ sendFormFunc({
 		}
 	]
 });
-// sendFormFunc('#form2');
-// sendFormFunc('#form3');
+sendFormFunc({
+	formId: '#form2',
+	someElems: [
+		{
+			id: '#total',
+			type: 'block'
+		}
+	]
+});
+sendFormFunc({
+	formId: '#form3',
+	someElems: [
+		{
+			id: '#total',
+			type: 'block'
+		}
+	]
+});

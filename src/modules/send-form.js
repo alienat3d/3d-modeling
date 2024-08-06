@@ -53,11 +53,11 @@ export const sendFormFunc = ({ formId, someElems = [] }) => {
 
 		if (validate(formInputs)) {
 			sendData(formBody)
-				.then(data => {
+				.then(() => {
 					statusInfoBlock.textContent = successText;
 					formInputs.forEach(input => input.value = '');
 				})
-				.catch(error => {
+				.catch(() => {
 					statusInfoBlock.textContent = errorText;
 				});
 		} else {
