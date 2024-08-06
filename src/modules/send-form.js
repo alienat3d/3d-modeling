@@ -8,15 +8,35 @@ export const sendFormFunc = ({ formId, someElems = [] }) => {
 	const errorText = 'Произошла ошибка! Попробуйте снова.';
 	const successText = 'Спасибо за заявку! Наш менеджер скоро с вами свяжется!';
 
+	const checkInput = (input, regExp) =>
+		regExp.test(input.value) ?
+			input.classList.add('success') :
+			input.classList.add('error');
+
 	const validate = (list) => {
 		let success = true;
-
-		// 4.7 Но если у нас нет отдельной функции, обрабатывающей регулярками инпуты, то сделать это можно здесь. Перебрать все инпуты и проверить методом test() их value. (И лично Александру этот вариант нравится больше.)
-		/* list.forEach(input => {
-			if (!input.classList.contains('success')) {
-				success = false;
+		
+		list.forEach(input => {
+			input.classList.remove('success');
+			input.classList.remove('error');
+			switch (input.name) {
+				case 'user_name':
+					checkInput(input, /[А-Яа-яЁё\s]/g);
+					break;
+				case 'user_email':
+					checkInput(input, /^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/g);
+					break;
+				case 'user_phone':
+					checkInput(input, /[\d()\-+]/g);
+					break;
+				case 'user_message':
+					checkInput(input, /[\WА-Яа-яЁё_]/g);
+					break;
 			}
-		}); */
+			!input.classList.contains('success') ?
+				success = false :
+				input.classList.remove('success')
+		});
 
 		return success;
 	}
@@ -61,9 +81,12 @@ export const sendFormFunc = ({ formId, someElems = [] }) => {
 					statusInfoBlock.textContent = errorText;
 				});
 		} else {
-			alert('Данные не валидны, проверьте ввод и попробуйте снова!');
+			// alert('Данные не валидны, проверьте ввод и попробуйте снова!');
+			console.warn('Данные не валидны, проверьте ввод и попробуйте снова!');
 		}
 	}
+
+	statusInfoBlock.classList.add('info-block');
 
 	try {
 		if (!form) {
